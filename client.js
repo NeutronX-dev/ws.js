@@ -1,6 +1,7 @@
-const socks = require('socks-proxy-agent');
-const hagent = require('proxy-agent');
+const socks     = require('socks-proxy-agent');
+const hagent    = require('proxy-agent');
 const WebSocket = require('ws');
+
 module.exports = class {
     constructor(debug, URL) {
         this.ws = null;
@@ -183,7 +184,7 @@ module.exports = class {
     send(msg) {
         return new Promise((resolve, reject) => {
             let message = msg;
-            let type = typeof(msg)
+            let type = typeof (msg)
             let size = 0;
             if (typeof (msg) == 'object' && !msg.length) {
                 try {
@@ -214,6 +215,38 @@ module.exports = class {
             }
         });
 
+    }
+    close(code, data) {
+        code = code || 0;
+        data = data || "unknown";
+        if (this.ws.readyState == this.ws.OPEN) {
+            this.ws.close(code, data);
+            return true;
+        } else {
+            this.log("Unable to close a closed connection.");
+            return false;
+        }
+    }
+    isOpen() {
+        if (this.ws.readyState == this.ws.OPEN) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    isConnecting() {
+        if (this.ws.readyState == this.ws.CONNECTING) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    isClosed() {
+        if (this.ws.readyState == this.ws.CLOSED) {
+            return true;
+        } else {
+            return false;
+        }
     }
     _onMessage(msg) {
         let message = msg.data;
