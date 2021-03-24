@@ -228,21 +228,21 @@ module.exports = class {
         }
     }
     isOpen() {
-        if (this.ws.readyState == this.ws.OPEN) {
+        if (this.ws && this.ws.readyState == this.ws.OPEN) {
             return true;
         } else {
             return false;
         }
     }
     isConnecting() {
-        if (this.ws.readyState == this.ws.CONNECTING) {
+        if (this.ws && this.ws.readyState == this.ws.CONNECTING) {
             return true;
         } else {
             return false;
         }
     }
     isClosed() {
-        if (this.ws.readyState == this.ws.CLOSED) {
+        if (this.ws && this.ws.readyState == this.ws.CLOSED) {
             return true;
         } else {
             return false;
