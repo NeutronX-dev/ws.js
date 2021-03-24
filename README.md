@@ -36,9 +36,13 @@ const ws = require('ws.js').build.client( debug );
 | ws.js.[client](#nodejs-client)  | [`.setURL`](#seturl-npm-client)      | `string URL` | `NO`          | `void`
 | ws.js.[client](#nodejs-client)  | [`.setHeaders`](#setheaders-npm-client)  | `object headers` (JSON) | `NO`          | `void`
 | ws.js.[client](#nodejs-client)  | [`.setAgent`](#setagent-npm-client)  | `string proxy`, `string type` | `NO`          | `void`
+| ws.js.[client](#nodejs-client)  | [`.isOpen`](#isopen-npm-client)  | `NONE` | `NO` | `true` or `false`
+| ws.js.[client](#nodejs-client)  | [`.isClosed`](#isclosed-npm-client)  | `NONE` | `NO` | `true` or `false`
+| ws.js.[client](#nodejs-client)  | [`.isConnecting`](#isconnecting-npm-client)  | `NONE` | `NO` | `true` or `false`
 | ws.js.[client](#nodejs-client)  | [`.on`](#on-npm-client) | `string event`, `function callback`, `boolean bind` (opt.) | `NO` | `void`
 | ws.js.[client](#nodejs-client)  | [`.connect`](#connect-npm-client)  | `string proxy`, `string type` | `YES`          | `JSON` `{success, time, message, external}`
 | ws.js.[client](#nodejs-client)  | [`.send`](#send-npm-client) | `ANY message` | `YES` | `true` or `false`
+| ws.js.[client](#nodejs-client)  | [`.send`](#close-npm-client) | `int code`, `string data` | `NO` | `true` or `false`
 
 ### `constructor` (npm client)
 * **Parameters**
@@ -66,6 +70,21 @@ const ws = require('ws.js').build.client( debug );
 * **Description**: Makes an `type` agent from `proxy` to connect with.
 * **Return**: void
 
+### `.isOpen` (npm client)
+* **Parameters**
+* * NONE
+* **Return**: `true` or `false`
+
+### `.isClosed` (npm client)
+* **Parameters**
+* * NONE
+* **Return**: `true` or `false`
+
+### `.isConnecting` (npm client)
+* **Parameters**
+* * NONE
+* **Return**: `true` or `false`
+
 ### `.on` (npm client)
 * **Parameters**
 * * `string event` (required) (`"open"`, `"close"`, `"message"`, or `"error"`)
@@ -82,6 +101,12 @@ const ws = require('ws.js').build.client( debug );
 ### `.send` (npm client)
 * **Parameters**
 * * `ANY message` (required)
+* **Return**: `true` or `false`
+
+### `.close` (npm client)
+* **Parameters**
+* * `int message` (optional)
+* * `string data` (optional)
 * **Return**: `true` or `false`
 
 ### `on` Information (npm client)
@@ -117,6 +142,7 @@ client.connect().then((res) => {
         type: 'ws.js'                                          // property "type", value "l"
     });
 });
+client.close(0);                                               // Closes the connection.
 ```
 Console:
 ```
