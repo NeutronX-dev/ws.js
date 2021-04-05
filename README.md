@@ -195,14 +195,15 @@ const ws = require('ws.js').build.server( debug );
 ## Methods (node client)
 | Class | Method | Parameters | Promise | Return
 | -------------------------------- | -------------   | -------------- | ------------- | ---------------- |
-| ws.js.[server](#nodejs-server)  | [`constructor`](#constructor-server-client)  | `boolean debug` | `NO` | `void`
-| ws.js.[server](#nodejs-server)  | [`.addServer`](#addserver-server-client)      | `server instance` (e.x.: express().listen()) | `NO`          | `void`
-| ws.js.[server](#nodejs-server)  | [`.addPort`](#addport-server-client)  | `int port` | `NO`          | `void`
-| ws.js.[server](#nodejs-server)  | [`.on`](#on-server-client) | `string event`, `function callback`, `boolean bind` (opt.) | `NO` | `void`
-| ws.js.[server](#nodejs-server)  | [`.listen`](#listen-server-client)  | N/A | `NO` | `void`
-| ws.js.[server](#nodejs-server)  | [`.broadcast`](#broadcast-server-client) | `ANY message` | `YES` | `int sent` (successful sent messages)
-| ws.js.[server](#nodejs-server)  | [`.getActiveSockets`](#getactivesockets-server-client) | `int socketID` | `NO` | `[Socket, Socket, ...]` or `Socket`
-| ws.js.[server](#nodejs-server)  | [`.destroy`](#destroy-server-client) | N/A | `NO` | N/A
+| ws.js.[server](#nodejs-server)  | [`constructor`](#constructor-node-server)  | `boolean debug` | `NO` | `void`
+| ws.js.[server](#nodejs-server)  | [`.addServer`](#addserver-node-server)      | `server instance` (e.x.: express().listen()) | `NO`          | `void`
+| ws.js.[server](#nodejs-server)  | [`.addPort`](#addport-node-server)  | `int port` | `NO`          | `void`
+| ws.js.[server](#nodejs-server)  | [`.on`](#on-node-server) | `string event`, `function callback`, `boolean bind` (opt.) | `NO` | `void`
+| ws.js.[server](#nodejs-server)  | [`.listen`](#listen-node-server)  | N/A | `NO` | `void`
+| ws.js.[server](#nodejs-server)  | [`.broadcast`](#broadcast-node-server) | `ANY message` | `YES` | `int sent` (successful sent messages)
+| ws.js.[server](#nodejs-server)  | [`.getActiveSockets`](#getactivesockets-node-server) | `int socketID` | `NO` | `[Socket, Socket, ...]` or `Socket`
+| ws.js.[server](#nodejs-server)  | [`.getInactiveSockets`](#getinactivesockets-node-server) | `int socketID` | `NO` | `[JSON, JSON, ...]` or `JSON`
+| ws.js.[server](#nodejs-server)  | [`.destroy`](#destroy-node-server) | N/A | `NO` | N/A
 
 ### `.constructor` (node server)
 * **Parameters**
