@@ -2,6 +2,7 @@ const socks     = require('socks-proxy-agent');
 const hagent    = require('proxy-agent');
 const WebSocket = require('ws');
 
+
 module.exports = class {
     constructor(debug, URL) {
         this.ws = null;
@@ -29,7 +30,7 @@ module.exports = class {
     }
     log(message) {
         if (this.data.debug) {
-            console.log(`[ws.js] ${message}`);
+            console.log(`[ws.js] [client] ${message.split("\n").join("\n[ws.js] ")}`);
         }
     }
     setURL(url) {
@@ -83,7 +84,7 @@ module.exports = class {
                     this.log("Set proxy to " + proxy + " (" + type + ")")
                     break;
                 default:
-                    throw new Error(`[ws.js]   <ws.js_object>.setAgent(String proxy, String type);\n[ws.js]   ${type} is an unsupported type.`);
+                    throw new Error(`[ws.js]   <ws.js_object>.setAgent(String proxy, String type);\n[ws.js]   "${type}" is an unsupported type.`);
                     break;
             }
         } else {
@@ -193,10 +194,13 @@ module.exports = class {
                     type = "JSON";
                 } catch (e) {
                     this.log("Unable to stringify Message.");
+                    reject(false);
                 }
             } else if (typeof (msg) == "number" || typeof (msg) == "boolean") {
                 message = msg.toString();
                 size = msg.toString().length;
+            } else if (msg.length) {
+                size = msg.length;
             }
             if (this.ws && this.ws.readyState == this.ws.OPEN) {
                 try {
@@ -214,14 +218,18 @@ module.exports = class {
                 }, 1);
             }
         });
-
     }
     close(code, data) {
-        code = code || 0;
+        code = code || 1000;
         data = data || "unknown";
-        if (this.ws.readyState == this.ws.OPEN) {
-            this.ws.close(code, data);
-            return true;
+        if (this.ws && this.ws.readyState == this.ws.OPEN) {
+            try {
+                this.ws.close(code, data);
+                return true;
+            } catch (e) {
+                this.log("Error closing the Connection");
+                throw new Error(e);
+            }
         } else {
             this.log("Unable to close a closed connection.");
             return false;
