@@ -20,7 +20,7 @@
 ## Get Started (node client)
 To install `ws.js` you need to input the following in your console:
 ```
-npm i ws.js
+npm i nex.ws
 ```
 
 ## Implementation (node client)
@@ -178,7 +178,7 @@ The debug mode logs pretty much everything, When setters are trigerred, connecti
 ## Get Started (node server)
 To install `ws.js` you need to input the following in your console:
 ```
-npm i ws.js
+npm i nex.ws
 ```
 
 # Implementation (node server)
