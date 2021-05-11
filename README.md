@@ -126,7 +126,7 @@ const ws = require('ws.js').build.client( debug, URL );
 ### Example #1:
 Connection to `wss://echo.websocket.org` (debug mode)
 ```js
-const ws_js = require('ws.js');
+const ws_js = require('nex.ws');
 
 const client = new ws_js(true);                                // Make class on debug mode.
 client.setURL("wss://echo.websocket.org");                     // Sets URL to connect to.
