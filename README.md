@@ -27,11 +27,11 @@ npm i nex.ws
 To start using `ws.js` (client) you need to write the following code:
 ```js
 // CLASS
-const ws_js = require('ws.js');
+const ws_js = require('nex.ws');
 const ws = new ws_js( debug, URL );
 
 // BUILT
-const ws = require('ws.js').build.client( debug, URL );
+const ws = require('nex.ws').build.client( debug, URL );
 ```
 
 ## Methods (node client)
